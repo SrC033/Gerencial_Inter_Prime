@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=yes">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Resumen Ejecutivo · Grupo GSN · Futurista</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- HEADER CON FILTROS INTEGRADOS -->
+    <header class="header-with-filters">
+        <div class="header-title">
+            <h1 id="viewTitle">Resumen Ejecutivo</h1>
+            <p id="viewSubtitle">Dashboard gerencial · Grupo GSN</p>
+        </div>
+
+        <div class="filters-row" id="filtersGeneral">
+            <label>📅 PERIODO<select id="period"><option value="Todos">Todos</option></select></label>
+            <label>CLIENTE<select id="client"><option value="Todos">Todos</option></select></label>
+            <label>COMBUSTIBLE<select id="fuel"><option value="Todos">Todos</option></select></label>
+            <label>FLOTA<select id="fleet"><option value="Todas">Todas</option></select></label>
+        </div>
+    </header>
+
+    <!-- LAYOUT PRINCIPAL 2 COLUMNAS -->
+    <div class="main-layout">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="col-left">
+
+            <!-- KPIs -->
+            <div class="kpis-container" id="kpisContainer">
+                <div class="kpi-block fuel-block">
+                    <div class="block-title">
+                        <span>🛢️ Fuel Oil</span>
+                        <span class="title-line"></span>
+                    </div>
+                    <div class="kpi-grid" id="fuelKpisGrid"></div>
+                </div>
+                <div class="kpi-block general-block">
+                    <div class="block-title">
+                        <span>📊 General</span>
+                        <span class="title-line"></span>
+                    </div>
+                    <div class="kpi-grid" id="generalKpisGrid"></div>
+                </div>
+            </div>
+
+            <!-- Cumplimiento + Alertas -->
+            <div class="unified-panel">
+                <article class="panel fulfill" id="fulfill"></article>
+                <article class="panel alerts alerts-below" id="alerts"></article>
+            </div>
+
+        </div>
+
+        <!-- COLUMNA DERECHA - CARRUSEL DE GRÁFICAS -->
+        <div class="col-right">
+            <div class="carousel-panel">
+                <div class="carousel-header">
+                    <div>
+                        <h2>📈 Análisis Visual</h2>
+                        <small id="carouselSubtitle">Distribución y rendimiento</small>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" id="carouselPrev" title="Anterior">‹</button>
+                        <div class="carousel-dots" id="carouselDots"></div>
+                        <button class="carousel-btn" id="carouselNext" title="Siguiente">›</button>
+                    </div>
+                </div>
+
+                <div class="carousel-viewport">
+                    <div class="carousel-track" id="carouselTrack">
+
+                        <div class="carousel-slide">
+                            <div class="slide-title">
+                                <h3>🛢️ Distribución Fuel Oil</h3>
+                                <span class="source-badge">Fuel Oil</span>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="fuelChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <div class="slide-title">
+                                <h3>📈 Rendimiento General</h3>
+                                <span class="source-badge">General</span>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="generalChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <div class="slide-title">
+                                <h3>👥 Top Clientes</h3>
+                                <span class="source-badge">Top Clientes</span>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="clientChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <div class="slide-title">
+                                <h3>📅 Mes Actual vs Mes Anterior</h3>
+                                <span class="source-badge">Comparación</span>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="compareChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <div class="slide-title">
+                                <h3>🚨 Clientes que Dejaron de Consumir</h3>
+                                <span class="source-badge" style="border-color:var(--neon-red);color:var(--neon-red);background:rgba(255,84,112,0.08);">Alerta</span>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="lostChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <div class="slide-title">
+                                <h3>🔍 Detector de Discrepancias</h3>
+                                <span class="source-badge" style="border-color:var(--neon-red);color:var(--neon-red);background:rgba(255,84,112,0.08);">Revisión</span>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="discrepancyChart"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TOOLTIP INFORMATIVO -->
+    <div id="infoTooltip">
+        <div class="tt-header">
+            <div class="tt-title" id="ttTitle">Informacion</div>
+            <button class="tt-close" onclick="hideInfoTooltip()">×</button>
+        </div>
+        <div class="tt-body" id="ttBody">
+            <div id="ttContent">Cargando informacion...</div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast">
+        <span id="toastIcon">⏳</span>
+        <span id="toastMessage">Cargando...</span>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

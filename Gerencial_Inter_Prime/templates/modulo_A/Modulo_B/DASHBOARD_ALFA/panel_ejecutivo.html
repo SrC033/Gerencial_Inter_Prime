@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>ALFA · Executive Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+    <div class="dashboard">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-icon"><i class="fas fa-chart-pie"></i></div>
+                <div class="title">
+                    <h1>ALFA · EXECUTIVE COMMAND CENTER</h1>
+                    <div class="sub">
+                        <span><span class="pulse-dot"></span> LIVE · <span id="currentDate">Cargando...</span></span>
+                        <span><i class="fas fa-circle" style="color:#3b82f6; font-size:6px;"></i> <span id="dataStatus">Conectando...</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <span><i class="fas fa-wallet" style="color:#22c55e;"></i> C$</span>
+                <span class="badge-date"><i class="fas fa-clock"></i> <span id="lastUpdate">Actualizando...</span></span>
+            </div>
+        </div>
+
+        <!-- MAIN: CARRUSEL DE CAJAS -->
+        <div class="main-content">
+            <div class="caja-carousel-wrapper">
+                <div class="caja-carousel-viewport" id="cajaViewport">
+                    <div class="caja-carousel-track" id="cajaTrack">
+                        <!-- Los slides se generan dinámicamente -->
+                    </div>
+                </div>
+                <div class="caja-carousel-dots" id="cajaDots">
+                    <!-- Los dots se generan dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            <span><span class="status-dot online" id="statusDot"></span> <span id="statusText">Cargando datos...</span></span>
+            <span><i class="fas fa-circle" style="color:#3b82f6; font-size:5px;"></i> MODULE BOXES</span>
+            <span><i class="fas fa-circle" style="color:#22c55e; font-size:5px;"></i> C$ · LOCAL CURRENCY</span>
+        </div>
+
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
